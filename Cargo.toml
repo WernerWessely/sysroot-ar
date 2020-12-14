@@ -1,0 +1,28 @@
+[package]
+name = "sysroot-ar"
+version = "0.1.0"
+authors = ["Werner Wessely <wessely.werner@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[dependencies.std]
+path = "../rust/library/std"
+
+[patch.crates-io]
+#backtrace-sys = { path = '../patches/backtrace-rs/crates/backtrace-sys' }
+
+rustc-std-workspace-core = { path = '../rust/library/rustc-std-workspace-core' }
+rustc-std-workspace-alloc = { path = '../rust/library/rustc-std-workspace-alloc' }
+
+[profile.release]
+lto = true
+debug = true
+panic = "abort"
+
+[profile.dev]
+lto = true
+debug = true
+panic = "abort"
